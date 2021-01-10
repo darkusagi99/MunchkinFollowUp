@@ -5,39 +5,23 @@ import java.util.ArrayList
 import java.util.HashMap
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- *
- * TODO: Replace all uses of this class before publishing your app.
+ * Helper class for providing player content for interface
  */
 object PlayerInfo {
 
     /**
-     * An array of sample (dummy) items.
+     * An array of players items.
      */
     val ITEMS: MutableList<PlayerItem> = ArrayList()
 
     /**
-     * A map of sample (dummy) items, by ID.
+     * A map of players items, by ID.
      */
     val ITEM_MAP: MutableMap<String, PlayerItem> = HashMap()
 
-    private val COUNT = 25
-
-    init {
-        // Add some sample items.
-        for (i in 1..COUNT) {
-            addItem(createDummyItem(i))
-        }
-    }
-
     fun addItem(item: PlayerItem) {
         ITEMS.add(item)
-        ITEM_MAP.put(item.id, item)
-    }
-
-    private fun createDummyItem(position: Int): PlayerItem {
-        return PlayerItem(position.toString(), 1)
+        ITEM_MAP[item.id] = item
     }
 
     fun createNewPlayer(name: String): PlayerItem {
