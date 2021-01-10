@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -45,7 +46,7 @@ class ItemListActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
 
-            val taskEditText =  EditText(view.context);
+            val taskEditText =  EditText(view.context)
             val dialogClickListener =
                     DialogInterface.OnClickListener { dialog, which ->
                         when (which) {
@@ -120,6 +121,16 @@ class ItemListActivity : AppCompatActivity() {
             holder.idView.text = item.id
             holder.levelView.text = item.level.toString()
 
+            holder.addLevelView.setOnClickListener {
+                PlayerInfo.addLevelToPlayer(item.id)
+                this.notifyDataSetChanged()
+            }
+
+            holder.removeLevelView.setOnClickListener {
+                PlayerInfo.removeLevelToPlayer(item.id)
+                this.notifyDataSetChanged()
+            }
+
             with(holder.itemView) {
                 tag = item
                 setOnClickListener(onClickListener)
@@ -131,6 +142,8 @@ class ItemListActivity : AppCompatActivity() {
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val idView: TextView = view.findViewById(R.id.id_text)
             val levelView: TextView = view.findViewById(R.id.level_text)
+            val addLevelView: ImageButton = view.findViewById(R.id.levelup)
+            val removeLevelView: ImageButton = view.findViewById(R.id.leveldown)
         }
     }
 }
