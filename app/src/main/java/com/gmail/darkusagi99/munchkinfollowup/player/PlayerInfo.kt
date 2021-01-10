@@ -30,13 +30,17 @@ object PlayerInfo {
         }
     }
 
-    private fun addItem(item: PlayerItem) {
+    fun addItem(item: PlayerItem) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
     }
 
     private fun createDummyItem(position: Int): PlayerItem {
-        return PlayerItem(position.toString(), "Nom " + position, makeDetails(position))
+        return PlayerItem(position.toString(), 1)
+    }
+
+    fun createNewPlayer(name: String): PlayerItem {
+        return PlayerItem(name, 1)
     }
 
     private fun makeDetails(position: Int): String {
@@ -48,7 +52,7 @@ object PlayerInfo {
     /**
      * An item representing a player
      */
-    data class PlayerItem(val id: String, val name: String, val level: String) {
-        override fun toString(): String = level
+    data class PlayerItem(val id: String, val level: Int) {
+        override fun toString(): String = "$id - Niveau : $level"
     }
 }

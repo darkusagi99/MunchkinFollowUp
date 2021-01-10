@@ -31,7 +31,7 @@ class ItemDetailFragment : Fragment() {
                 // arguments. In a real-world scenario, use a Loader
                 // to load content from a content provider.
                 item = PlayerInfo.ITEM_MAP[it.getString(ARG_ITEM_ID)]
-                activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = item?.name
+                activity?.findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout)?.title = item?.id
             }
         }
     }
@@ -42,7 +42,7 @@ class ItemDetailFragment : Fragment() {
 
         // Show the dummy content as text in a TextView.
         item?.let {
-            rootView.findViewById<TextView>(R.id.item_detail).text = it.level
+            rootView.findViewById<TextView>(R.id.item_detail).text = it.level.toString()
         }
 
         return rootView

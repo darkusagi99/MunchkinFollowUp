@@ -1,19 +1,23 @@
 package com.gmail.darkusagi99.munchkinfollowup
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.widget.NestedScrollView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import androidx.appcompat.widget.Toolbar
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
-
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.RecyclerView
 import com.gmail.darkusagi99.munchkinfollowup.player.PlayerInfo
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 /**
  * An activity representing a list of Pings. This activity
@@ -40,8 +44,25 @@ class ItemListActivity : AppCompatActivity() {
         toolbar.title = title
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+
+            val taskEditText =  EditText(view.context);
+            val dialogClickListener =
+                    DialogInterface.OnClickListener { dialog, which ->
+                        when (which) {
+                            DialogInterface.BUTTON_POSITIVE -> {
+                                Toast.makeText(this, "Création -" + taskEditText.text.toString(), Toast.LENGTH_SHORT).show()
+                                PlayerInfo.addItem(PlayerInfo.createNewPlayer(taskEditText.text.toString()))
+                            }
+                            DialogInterface.BUTTON_NEGATIVE -> {
+                                Toast.makeText(this, "Pas de Création -" + taskEditText.text.toString(), Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+            val ab: AlertDialog.Builder = AlertDialog.Builder(view.context)
+            ab.setMessage("Ajouter nouveau joueur ?")
+                    .setView(taskEditText)
+                    .setPositiveButton("Oui", dialogClickListener)
+                    .setNegativeButton("Non", dialogClickListener).show()
         }
 
         if (findViewById<NestedScrollView>(R.id.item_detail_container) != null) {
@@ -97,7 +118,7 @@ class ItemListActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = values[position]
             holder.idView.text = item.id
-            holder.contentView.text = item.level
+            holder.levelView.text = item.level.toString()
 
             with(holder.itemView) {
                 tag = item
@@ -109,7 +130,7 @@ class ItemListActivity : AppCompatActivity() {
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val idView: TextView = view.findViewById(R.id.id_text)
-            val contentView: TextView = view.findViewById(R.id.name)
+            val levelView: TextView = view.findViewById(R.id.level_text)
         }
     }
 }

@@ -13,10 +13,11 @@
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/nameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:text="@string/level"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <ImageButton
@@ -29,7 +30,7 @@
         android:contentDescription="@string/remove_one_level"/>
 
     <TextView
-        android:id="@+id/level"
+        android:id="@+id/level_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
