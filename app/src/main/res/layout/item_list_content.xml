@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -18,24 +19,29 @@
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
 
-    <Button
+    <ImageButton
         android:id="@+id/leveldown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button" />
+        android:layout_margin="@dimen/text_margin"
+        app:srcCompat="@android:drawable/arrow_down_float"
+        android:contentDescription="@string/remove_one_level"/>
 
     <TextView
         android:id="@+id/level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
         android:layout_weight="1"
         android:text="TextView" />
 
-    <Button
+    <ImageButton
         android:id="@+id/levelup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button" />
+        android:layout_margin="@dimen/text_margin"
+        app:srcCompat="@android:drawable/arrow_up_float"
+        android:contentDescription="@string/add_one_level"/>
 </LinearLayout>

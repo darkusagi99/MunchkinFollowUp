@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MunchkinFollowUp</string>
-    <string name="title_item_detail">Item Detail</string>
+    <string name="title_item_detail">Detail</string>
+    <string name="remove_one_level">Retirer un niveau</string>
+    <string name="add_one_level">Ajouter un niveau</string>
+    <string name="name">Nom</string>
 </resources>
