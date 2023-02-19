@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.darkusagi99.munchkinfollowup.player.PlayerInfo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlin.random.Random
 
 
 /**
@@ -53,6 +54,14 @@ class ItemListActivity : AppCompatActivity() {
                     .setNegativeButton("Non", dialogClickListener).show()
         }
 
+        findViewById<FloatingActionButton>(R.id.dice).setOnClickListener { view ->
+
+            val currentRoll = Random.nextInt(1, 7)
+            val ab: AlertDialog.Builder = AlertDialog.Builder(view.context)
+            ab.setMessage("Lancé de dés : $currentRoll")
+                .show()
+        }
+
         setupRecyclerView(findViewById(R.id.item_list))
     }
 
@@ -77,12 +86,12 @@ class ItemListActivity : AppCompatActivity() {
 
             holder.addLevelView.setOnClickListener {
                 PlayerInfo.addLevelToPlayer(item.id)
-                this.notifyDataSetChanged()
+                this.notifyItemChanged(position)
             }
 
             holder.removeLevelView.setOnClickListener {
                 PlayerInfo.removeLevelToPlayer(item.id)
-                this.notifyDataSetChanged()
+                this.notifyItemChanged(position)
             }
 
             with(holder.itemView) {
