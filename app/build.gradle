@@ -4,8 +4,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "30.0.2"
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.gmail.darkusagi99.munchkinfollowup"
@@ -30,6 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.gmail.darkusagi99.munchkinfollowup'
 }
 
 dependencies {
@@ -42,4 +42,5 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
 }
